@@ -22,5 +22,8 @@ int main() {
     shared_ptr<int> d(c);
     std::cout << "C - refs: " << c.useCount() << " \n";
     std::cout << "D - refs: " << d.useCount() << " \n";
+    int* ptrTmp = new int{9};
+    d.reset(ptrTmp);
+    std::cout << *d;
     return 0;
 }

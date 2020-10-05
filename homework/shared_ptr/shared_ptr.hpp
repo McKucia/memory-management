@@ -23,7 +23,7 @@ public:
     shared_ptr<T>& operator=(const shared_ptr<T>& otherPtr);
 
     void checkRefs();
-    void reset(T* ptr);
+    void reset(T* ptr = nullptr);
 
 private:
     T* ptr_;
@@ -141,9 +141,8 @@ void shared_ptr<T>::checkRefs() {
 /*------------------------------------------------------------------*/
 template<typename T>
 void shared_ptr<T>::reset(T *ptr) {
-    if(useCount()){
-        --(*sharedRefs_);
-        checkRefs();
+    if(useCount() == 1){
+        delete ptr_;
     }
     else{
         sharedRefs_ = new ControlBlock();

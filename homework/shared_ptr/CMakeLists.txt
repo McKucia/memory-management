@@ -29,8 +29,10 @@ endif()
 
 project(shared_ptr)
 
+enable_testing()
+
 add_executable(${PROJECT_NAME} main.cpp)
 add_executable(${PROJECT_NAME}-ut shared_ptr-ut.cpp)
 target_link_libraries(${PROJECT_NAME}-ut gtest_main)
 
-add_test(NAME shared_ptr_Test COMMAND shared_ptr)
+add_test(NAME shared_ptr_Test COMMAND ${PROJECT_NAME}-ut)
